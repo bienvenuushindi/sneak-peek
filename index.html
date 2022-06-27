@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+<main>
+    <section class="w-50 mx-auto">
+        <div class=" ">
+            <h1 class="text-center">All Awesome Books</h1>
+            <div class="book-list">
+                <ul class="books text-center border border-dark p-0 m-0">
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="add-book">
+            <h2 class="text-center mt-5">Add a new book</h2>
+            <form action="#" method="post"  id="book-form">
+                <div class="from-group my-2">
+                    <label for="title"></label>
+                    <input type="text" name="title" id="title"  placeholder="Title" minlength="1" required class="form-control"/>
+                </div>
+                <div class="from-group my-2">
+                    <label for="author"></label>
+                    <input type="text" name="author" id="author" placeholder="Authors" minlength="1" required class="form-control"/>
+                </div>
+                <div class="from-group my-5 text-end">
+                    <button type="submit" class="btn btn-primary" name="add-book" id="add-book">Add</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
