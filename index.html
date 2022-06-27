@@ -22,17 +22,17 @@
 
         <div class="add-book">
             <h2 class="text-center mt-5">Add a new book</h2>
-            <form class="#" id="book-form">
+            <form action="#"  id="book-form">
                 <div class="from-group my-2">
                     <label for="title"></label>
-                    <input name="title" id="title" type="text" class="form-control" placeholder="Title" required>
+                    <input type="text" name="title" id="title"  class="form-control" placeholder="Title" required minlength="1"/>
                 </div>
                 <div class="from-group my-2">
                     <label for="author"></label>
-                    <input name="author" id="author" class="form-control" type="text" placeholder="Authors" required>
+                    <input type="text" name="author" id="author" class="form-control" placeholder="Authors" required minlength="1"/>
                 </div>
-                <div class="from-group my-5 text-right">
-                    <button type="submit" class="btn btn-primary ml-auto" name="add-book" id="add-book">Add</button>
+                <div class="from-group my-5 text-end">
+                    <button type="submit" class="btn btn-primary" name="add-book" id="add-book">Add</button>
                 </div>
             </form>
         </div>

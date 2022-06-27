@@ -1,7 +1,5 @@
-"use strict";
-const Books = [];
+let Books = [];
 const addButton = document.getElementById('add-book');
-// const removeButtons = document.querySelectorAll('.remove-button');
 const bookForm = document.getElementById('book-form');
 const bookList = document.querySelector('.books');
 
@@ -10,44 +8,68 @@ function Book(title, author) {
   this.author = author;
 }
 
-function addBook(form) {
+function createBook(form) {
   const title = form.elements.title.value;
   const author = form.elements.author.value;
-  return new Book(title, author)
+  return new Book(title, author);
+}
+
+function store(books) {
+  window.localStorage.setItem('books', JSON.stringify(books));
+}
+
+function addBook() {
+  Books.push(createBook(bookForm));
+  store(Books);
+}
+
+function setText(target, value) {
+  target.innerHTML = value;
+}
+
+function displayInfoMsg() {
+  const noBookFoundMsg = '<li class=\'list-group-item\'><div class=\'alert alert-info\'> No Book Found, Please Add First !!!</div></li>';
+  bookList.classList.remove('border');
+  setText(bookList, noBookFoundMsg);
 }
 
 function removeBook(index) {
-  Books.splice(index, 1)
+  Books.splice(index, 1);
+  store(Books);
 }
 
-function list(collection) {
-  return collection.map((item, index) => ` <li class="book-item d-flex justify-content-between p-2 ${index % 2 ===0 ? 'bg-secondary text-white':''}">
-                    <div class="book-info d-flex w-100">
-                    <div class="book-title mr-1">${item.title}</div><span> by </span>
-                    <div class="book-author mr-1">${item.author}</div>
+function listBooks() {
+  const collection = JSON.parse(window.localStorage.getItem('books'));
+  return collection.map((item, index) => ` <li class='book-item d-flex justify-content-between p-2 ${index % 2 === 0 ? 'bg-secondary text-white' : ''}'>
+                    <div class='book-info d-flex w-100'>
+                    <div class='book-title mr-1'>${item.title}</div><span> by </span>
+                    <div class='book-author mr-1'>${item.author}</div>
 </div>
-                    <div class="action ">
-                        <button type="button" class="remove-button btn btn-danger ml-auto small" id="${index}">Remove</button>
+                    <div class='action '>
+                        <button type='button' class='remove-button btn btn-danger ml-auto small' id='${index}'>Remove</button>
                     </div>
                     <hr>
                 </li> `).join(' ');
 }
 
-function setText(target, value) {
-  target.innerHTML = value
-}
-
 addButton.addEventListener('click', (ev) => {
   ev.preventDefault();
-  let book = addBook(bookForm);
-  Books.push(book);
-  setText(bookList, list(Books));
+  addBook();
+  bookList.classList.add('border');
+  setText(bookList, listBooks());
 });
 
-bookList.addEventListener('click', function (ev) {
+bookList.addEventListener('click', (ev) => {
   if (ev.target.classList.contains('remove-button')) {
     removeBook(ev.target.id);
-    setText(bookList, list(Books));
+    setText(bookList, listBooks());
+    if (Books.length === 0) displayInfoMsg();
   }
 });
 
+if (!localStorage.getItem('books') || JSON.parse(window.localStorage.getItem('books')).length === 0) {
+  displayInfoMsg();
+} else {
+  Books = [...JSON.parse(window.localStorage.getItem('books'))];
+  setText(bookList, listBooks());
+}
