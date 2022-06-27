@@ -2,7 +2,7 @@
   "name": "sneak-peek",
   "version": "1.0.0",
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
-  "main": "app.js",
+  "main": "assets/js/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +15,11 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bienvenuushindi/sneak-peek/issues"
+  },
+  "eslintConfig": {
+    "globals": {
+      "window": true
+    }
   },
   "homepage": "https://github.com/bienvenuushindi/sneak-peek#readme",
   "devDependencies": {
