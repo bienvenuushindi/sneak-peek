@@ -52,7 +52,7 @@ function listBooks() {
                 </li> `).join(' ');
 }
 
-addButton.addEventListener('click', (ev) => {
+addButton.addEventListener('submit', (ev) => {
   ev.preventDefault();
   addBook();
   bookList.classList.add('border');

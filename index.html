@@ -22,14 +22,14 @@
 
         <div class="add-book">
             <h2 class="text-center mt-5">Add a new book</h2>
-            <form action="#"  id="book-form">
+            <form action="#" method="post"  id="book-form">
                 <div class="from-group my-2">
                     <label for="title"></label>
-                    <input type="text" name="title" id="title"  class="form-control" placeholder="Title" required minlength="1"/>
+                    <input type="text" name="title" id="title"  placeholder="Title" minlength="1" required class="form-control"/>
                 </div>
                 <div class="from-group my-2">
                     <label for="author"></label>
-                    <input type="text" name="author" id="author" class="form-control" placeholder="Authors" required minlength="1"/>
+                    <input type="text" name="author" id="author" placeholder="Authors" minlength="1" required class="form-control"/>
                 </div>
                 <div class="from-group my-5 text-end">
                     <button type="submit" class="btn btn-primary" name="add-book" id="add-book">Add</button>
