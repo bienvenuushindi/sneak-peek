@@ -39,7 +39,7 @@ function removeBook(index) {
 }
 
 function listBooks() {
-  const collection = JSON.parse(window.localStorage.getItem('books'));
+  const collection = JSON.parse(localStorage.getItem('books'));
   return collection.map((item, index) => ` <li class='book-item d-flex justify-content-between p-2 ${index % 2 === 0 ? 'bg-secondary text-white' : ''}'>
                     <div class='book-info d-flex w-100'>
                     <div class='book-title mr-1'>${item.title}</div><span> by </span>
@@ -67,9 +67,9 @@ bookList.addEventListener('click', (ev) => {
   }
 });
 
-if (!localStorage.getItem('books') || JSON.parse(window.localStorage.getItem('books')).length === 0) {
+if (!localStorage.getItem('books') || JSON.parse(localStorage.getItem('books')).length === 0) {
   displayInfoMsg();
 } else {
-  Books = [...JSON.parse(window.localStorage.getItem('books'))];
+  Books = [...JSON.parse(localStorage.getItem('books'))];
   setText(bookList, listBooks());
 }
