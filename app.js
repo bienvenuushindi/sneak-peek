@@ -21,11 +21,13 @@ function removeBook(index) {
 }
 
 function list(collection) {
-  return collection.map((item, index) => ` <li class="book-item">
-                    <div class="book-title">${item.title}</div>
-                    <div class="book-author">${item.author}</div>
-                    <div class="action">
-                        <button type="button" class="remove-button" id="${index}">Remove</button>
+  return collection.map((item, index) => ` <li class="book-item d-flex justify-content-between p-2 ${index % 2 ===0 ? 'bg-secondary text-white':''}">
+                    <div class="book-info d-flex w-100">
+                    <div class="book-title mr-1">${item.title}</div><span> by </span>
+                    <div class="book-author mr-1">${item.author}</div>
+</div>
+                    <div class="action ">
+                        <button type="button" class="remove-button btn btn-danger ml-auto small" id="${index}">Remove</button>
                     </div>
                     <hr>
                 </li> `).join(' ');
