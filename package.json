@@ -16,11 +16,6 @@
   "bugs": {
     "url": "https://github.com/bienvenuushindi/sneak-peek/issues"
   },
-  "eslintConfig": {
-    "globals": {
-      "window": true
-    }
-  },
   "homepage": "https://github.com/bienvenuushindi/sneak-peek#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
