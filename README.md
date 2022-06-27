@@ -13,7 +13,7 @@
 
 ## Live Demo 
 
-[Live Demo Link](https://bienvenuushindi.github.io/sneak-peak/)
+[Live Demo Link](https://bienvenuushindi.github.io/sneak-peek/)
 
 ## Getting Started
 To get a local copy of this exercice, Please follow these simple example steps.
