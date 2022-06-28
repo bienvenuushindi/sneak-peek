@@ -3,12 +3,12 @@ const bookList = document.querySelector('.books');
 const msgBlock = document.getElementById('msg-block');
 
 class Book {
-  static list = [];
-
   constructor(title, author) {
     this.title = title;
     this.author = author;
   }
+
+  static list = [];
 
   store() {
     Book.list.push(this);
@@ -30,16 +30,14 @@ class Book {
     Book.list = [...JSON.parse(localStorage.getItem('books'))];
     return Book.list;
   }
-}
 
-class BookUI {
   static noBookFoundMsg = 'No Book Found, Please Add First !';
 
   static deleteMsg = 'Book deleted successfully.';
 
   static insertMsg = 'Book added successfully.';
 
-  static set(target, value) {
+  static setUI(target, value) {
     target.innerHTML = value;
   }
 
@@ -68,32 +66,31 @@ bookForm.addEventListener('submit', (ev) => {
   const book = new Book(title, author);
   book.store();
   Book.updateLocalStorage();
-  const itemList = BookUI.listAll;
-  BookUI.set(bookList, itemList());
-  BookUI.set(msgBlock, BookUI.alert(BookUI.insertMsg, 'alert-success'));
+  const itemList = Book.listAll;
+  Book.setUI(bookList, itemList());
+  Book.setUI(msgBlock, Book.alert(Book.insertMsg, 'alert-success'));
   bookList.classList.add('border');
   ev.preventDefault();
 });
 
 bookList.addEventListener('click', (ev) => {
   if (ev.target.classList.contains('remove-button')) {
-    const id = ev.target.id;
-    Book.remove(id);
+    Book.remove(ev.target.id);
     Book.updateLocalStorage();
-    const itemList = BookUI.listAll;
-    BookUI.set(bookList, itemList());
-    BookUI.set(msgBlock, BookUI.alert(BookUI.deleteMsg, 'alert-danger'));
+    const itemList = Book.listAll;
+    Book.setUI(bookList, itemList());
+    Book.setUI(msgBlock, Book.alert(Book.deleteMsg, 'alert-danger'));
     if (Book.list.length === 0) {
-      BookUI.set(msgBlock, BookUI.alert());
+      Book.setUI(msgBlock, Book.alert());
       bookList.classList.remove('border');
     }
   }
 });
 
 if (!localStorage.getItem('books') || Book.retrieveFormLocalStorage().length === 0) {
-  BookUI.set(msgBlock, BookUI.alert());
+  Book.setUI(msgBlock, Book.alert());
   bookList.classList.remove('border');
 } else {
-  const itemList = BookUI.listAll;
-  BookUI.set(bookList, itemList());
+  const itemList = Book.listAll;
+  Book.setUI(bookList, itemList());
 }
