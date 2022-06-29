@@ -9,6 +9,16 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
+<header>
+    <nav class="navbar navbar-dark bg-dark justify-content-between px-4">
+        <span class="navbar-brand mb-0 h1">Awesome Books</span>
+        <ul class="d-flex gap-5 text-white align-items-baseline mb-0">
+            <li class="list-group-item">List</li>
+            <li class="list-group-item  px-4 border border-top-0 border-bottom-0 border-light">Add new</li>
+            <li class="list-group-item">Contact</li>
+        </ul>
+    </nav>
+</header>
 <main>
     <section class="w-50 mx-auto my-5">
         <h1 class="text-center">All Awesome Books</h1>
@@ -18,8 +28,10 @@
             <ul class="books text-center border border-dark p-0 m-0">
             </ul>
         </div>
+    </section>
+    <section class="w-50 mx-auto my-5">
         <div class="add-book">
-            <h2 class="text-center mt-5">Add a new book</h2>
+            <h1 class="text-center mt-5">Add a new book</h1>
             <form action="#" method="post" id="book-form">
                 <div class="from-group my-2">
                     <label for="title"></label>
@@ -35,7 +47,25 @@
             </form>
         </div>
     </section>
+    <section class="w-50 mx-auto my-5">
+        <div class="contact">
+            <h1 class="text-center my-5">Contact Information</h1>
+            <div class="mx-auto w-75">
+                <p class="text-20">Do you have any question or you just want to say "Hello" ?<br> You can reach out to us</p>
+                <ul>
+                    <li class="text-20">Our email materchange@mail.com</li>
+                    <li class="text-20">Our phone 00243991043727</li>
+                    <li class="text-20">Our address: Goma 103, Av.Peace DRC</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 </main>
+<footer>
+    <div class="copy p-3 border posit">
+        &copy; Copyright ....
+    </div>
+</footer>
 <script src="assets/js/app.js"></script>
 </body>
 </html>
