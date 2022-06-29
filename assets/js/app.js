@@ -1,6 +1,7 @@
 const bookForm = document.getElementById('book-form');
 const bookList = document.querySelector('.books');
 const msgBlock = document.getElementById('msg-block');
+const addMsgBlock = document.getElementById('add-msg-block');
 
 class Book {
   constructor(title, author) {
@@ -47,13 +48,13 @@ class Book {
 
   static listAll() {
     return Book.retrieveFormLocalStorage().map((book, index) => ` <li class='book-item d-flex justify-content-between p-2 ${index % 2 === 0 ? 'bg-secondary text-white' : ''}'>
-                    <div class='book-info d-flex w-100 align-items-center text-20'>
+                    <div class='book-info d-flex w-100 align-items-center text-15'>
                          <div class='book-title mr-1'> ${book.title} </div>
                          <span>&nbsp; by &nbsp;</span>
                          <div class='book-author mr-1'> ${book.author} </div>
                     </div>
                     <div class='action '>
-                        <button type='button' class='remove-button btn btn-danger ml-auto small' id='${index}'>Remove</button>
+                        <button type='button' class='remove-button btn btn-danger ml-auto small btn-sm' id='${index}'>Remove</button>
                     </div>
                     <hr>
                 </li> `).join(' ');
@@ -70,7 +71,7 @@ bookForm.addEventListener('submit', (ev) => {
   Book.updateLocalStorage();
   const itemList = Book.listAll;
   Book.setUI(bookList, itemList());
-  Book.setUI(msgBlock, Book.alert(Book.insertMsg, 'alert-success'));
+  Book.setUI(addMsgBlock, Book.alert(Book.insertMsg, 'alert-success'));
   bookList.classList.add('border');
   ev.preventDefault();
 });
@@ -96,3 +97,59 @@ if (!localStorage.getItem('books') || Book.retrieveFormLocalStorage().length ===
   const itemList = Book.listAll;
   Book.setUI(bookList, itemList());
 }
+
+// ##################### Website Navigation
+
+const navList = document.querySelector('#nav-list');
+const navAddNew = document.querySelector('#nav-add-new');
+const navContact = document.querySelector('#nav-contact');
+
+const bookListSection = document.querySelector('.books-list');
+const addNewSection = document.querySelector('.add-new-book');
+const contactSection = document.querySelector('.add-contact-info');
+const clear = () => {
+  addMsgBlock.innerHTML = '';
+  if (Book.retrieveFormLocalStorage().length !== 0) msgBlock.innerHTML = '';
+};
+
+const newDate = new Date();
+document.getElementById('date-time').innerHTML = `${newDate.toDateString()} , ${newDate.toLocaleString('en-US', { hour: 'numeric', hour12: true })}`;
+
+navList.addEventListener('click', () => {
+  clear();
+  bookListSection.classList.remove('d-none');
+  addNewSection.classList.add('d-none');
+  contactSection.classList.add('d-none');
+});
+
+navAddNew.addEventListener('click', () => {
+  clear();
+  bookListSection.classList.add('d-none');
+  addNewSection.classList.remove('d-none');
+  contactSection.classList.add('d-none');
+});
+
+navContact.addEventListener('click', () => {
+  clear();
+  bookListSection.classList.add('d-none');
+  addNewSection.classList.add('d-none');
+  contactSection.classList.remove('d-none');
+});
+
+// ################ Mobile navbar ############
+
+const hamburgerMenu = document.querySelector('.hamburger');
+const navBar = document.querySelector('nav');
+const navLinks = document.querySelectorAll('#nav-links li');
+
+hamburgerMenu.addEventListener('click', () => {
+  hamburgerMenu.classList.toggle('active');
+  navBar.classList.toggle('active');
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    hamburgerMenu.classList.remove('active');
+    navBar.classList.remove('active');
+  });
+});
