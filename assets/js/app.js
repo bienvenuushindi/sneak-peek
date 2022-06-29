@@ -47,7 +47,7 @@ class Book {
 
   static listAll() {
     return Book.retrieveFormLocalStorage().map((book, index) => ` <li class='book-item d-flex justify-content-between p-2 ${index % 2 === 0 ? 'bg-secondary text-white' : ''}'>
-                    <div class='book-info d-flex w-100 align-items-center text-20'>
+                    <div class='book-info d-flex w-100 align-items-center text-15'>
                          <div class='book-title mr-1'> ${book.title} </div>
                          <span>&nbsp; by &nbsp;</span>
                          <div class='book-author mr-1'> ${book.author} </div>
@@ -96,3 +96,50 @@ if (!localStorage.getItem('books') || Book.retrieveFormLocalStorage().length ===
   const itemList = Book.listAll;
   Book.setUI(bookList, itemList());
 }
+
+
+// ##################### Website Navigation
+
+const navList = document.querySelector('#nav-list');
+const navAddNew = document.querySelector('#nav-add-new');
+const navContact = document.querySelector('#nav-contact');
+
+const bookListSection = document.querySelector('.books-list');
+const addNewSection = document.querySelector('.add-new-book');
+const contactSection = document.querySelector('.add-contact-info');
+
+navList.addEventListener('click', () => {
+  bookListSection.classList.add('display-section');
+  addNewSection.classList.remove('display-section');
+  contactSection.classList.remove('display-section');
+});
+
+navAddNew.addEventListener('click', () => {
+  bookListSection.classList.remove('display-section');
+  addNewSection.classList.add('display-section');
+  contactSection.classList.remove('display-section');
+});
+
+navContact.addEventListener('click', () => {
+  bookListSection.classList.remove('display-section');
+  addNewSection.classList.remove('display-section');
+  contactSection.classList.add('display-section');
+});
+
+// ################ Mobile navbar ############
+
+const hamburgerMenu = document.querySelector('.hamburger');
+const navBar = document.querySelector('nav');
+const navLinks = document.querySelectorAll('#nav-links li');
+
+hamburgerMenu.addEventListener('click', () => {
+  hamburgerMenu.classList.toggle('active');
+  navBar.classList.toggle('active');
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    hamburgerMenu.classList.remove('active');
+    navBar.classList.remove('active');
+  });
+});
